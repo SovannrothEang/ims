@@ -1,3 +1,4 @@
+using api.Domain.Exceptions;
 using api.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +12,17 @@ public static class ServiceCollections
     {
         services.AddDbContext<AppDbContext>(option =>
             option.UseNpgsql(configuration.GetConnectionString("NpgsqlConnection")));
-        
+        // Adding global exception and its problem detail service
+        services// .AddProblemDetails(configure =>
+            // {
+            //     configure.CustomizeProblemDetails = context =>
+            //     {
+            //         context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+            //     };
+
+            // })
+            .AddProblemDetails();
+        services.AddExceptionHandler<GlobalExceptionHandler>();
 
         return services;
     }

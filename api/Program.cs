@@ -20,7 +20,7 @@ if (app.Environment.IsDevelopment())
     });
     app.MapScalarApiReference();
 }
-
+app.UseExceptionHandler();
 app.MapApiEndpoints();
 
 app.Run();
