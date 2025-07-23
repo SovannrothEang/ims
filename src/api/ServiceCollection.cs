@@ -1,6 +1,6 @@
+using api.Application;
 using api.Domain.Exceptions;
 using api.Infrastructure;
-using Microsoft.EntityFrameworkCore;
 
 namespace api;
 
@@ -10,8 +10,9 @@ public static class ServiceCollection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddDbContext<AppDbContext>(option =>
-            option.UseNpgsql(configuration.GetConnectionString("NpgsqlConnection")));
+        services
+            .AddApplicationServiceCollection()
+            .AddInfrastructureServiceCollection(configuration);
         // Adding global exception and its problem detail service
         services// .AddProblemDetails(configure =>
             // {
