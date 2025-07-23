@@ -1,18 +1,18 @@
 version: "3.7"
 
 services:
-    db:
-        image: postgres:15
-        container_name: postgres_db
-        ports:
-            - 5432:5432
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: 123@dmin
-            POSTGRES_DB: ims_service_db
-        volumes:
-            - data:/var/lib/postgresql/data
-        restart: unless-stopped
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123@dmin
+      POSTGRES_DB: ims_service_db
+    volumes:
+      - data:/var/lib/postgresql/data
+    restart: unless-stopped
 
 volumes:
-    data:
+  data:
