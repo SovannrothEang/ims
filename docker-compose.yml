@@ -2,12 +2,12 @@ version: "3.7"
 
 services:
     db:
-        image: postres:15
-        container_name: postres_db
+        image: postgres:15
+        container_name: postgres_db
         ports:
             - 5432:5432
         environment:
-            POSTGRES_USER: postres
+            POSTGRES_USER: postgres
             POSTGRES_PASSWORD: 123@dmin
             POSTGRES_DB: ims_service_db
         volumes:
