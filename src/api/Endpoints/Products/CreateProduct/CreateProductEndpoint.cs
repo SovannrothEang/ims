@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace api.Endpoints.Products.CreateProduct;
 
 public class CreateProductEndpoint
@@ -8,15 +10,15 @@ public class CreateProductEndpoint
         string? Description,
         string Unit,
         double Price,
-        int Quantity,
-        Guid CategoryId
+        int Quantity
+        // Guid CategoryId
     );
     public static IResult Handle(
         CreateProductRequest request
     )
     {
         var result = $"Name: {request.Name}, SKU: {request.SKU}, Description: {request.Description}, ";
-        result += $"Unit: {request.Unit}, Price: {request.Price}, Quantity: {request.Quantity}, CategoryId: {request.CategoryId}";
+        result += $"Unit: {request.Unit}, Price: {request.Price}, Quantity: {request.Quantity}";
         return Results.Ok(result);
     }
 }
