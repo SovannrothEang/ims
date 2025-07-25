@@ -1,4 +1,6 @@
 using api.Application;
+using api.Application.Interfaces;
+using api.Application.Services;
 using api.Domain.Exceptions;
 using api.Infrastructure;
 
@@ -11,6 +13,7 @@ public static class ServiceCollection
         IConfiguration configuration)
     {
         services
+            .AddSingleton<IJwtTokenProvider, JwtTokenProvider>()
             .AddApplicationServiceCollection()
             .AddInfrastructureServiceCollection(configuration);
         // Adding global exception and its problem detail service
