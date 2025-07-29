@@ -20,8 +20,15 @@ internal sealed class JwtTokenProvider(IConfiguration configuration) : IJwtToken
         // Making claims
         var claims = new ClaimsIdentity([
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email)
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
         ]);
+        if (user.EmailVerfiedAt != null)
+        {
+            claims.AddClaim(
+                new Claim(JwtRegisteredClaimNames.EmailVerified, user.EmailVerfiedAt.ToString()!)
+            );
+        }
         // Making credential
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         // Making Token Descriptor
