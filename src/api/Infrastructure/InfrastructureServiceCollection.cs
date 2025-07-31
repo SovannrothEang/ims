@@ -13,6 +13,7 @@ public static class InfrastructureServiceCollection
         services.AddDbContext<AppDbContext>(option =>
             option.UseNpgsql(configuration.GetConnectionString("NpgsqlConnection")));
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
