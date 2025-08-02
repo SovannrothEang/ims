@@ -21,7 +21,7 @@ internal sealed class JwtTokenProvider(IConfiguration configuration) : IJwtToken
         var claims = new ClaimsIdentity([
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
+            new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.ToString())
         ]);
         if (user.EmailVerfiedAt != null)
         {

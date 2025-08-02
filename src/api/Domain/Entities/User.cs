@@ -25,7 +25,7 @@ public class User : BaseEntity
             {
                 throw new InvalidDataException("Invalid format");
             }
-                _passwordHash = _hasher.GetPasswordHash(value);
+            _passwordHash = _hasher.GetPasswordHash(value);
         }
     }
     [Column("role")]
