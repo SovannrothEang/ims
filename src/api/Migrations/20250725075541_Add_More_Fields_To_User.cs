@@ -10,12 +10,16 @@ namespace api.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.RenameColumn(
+                name: "name",
+                table: "tbl_users",
+                newName: "username");
+            migrationBuilder.AddColumn<int>(
                 name: "role",
                 table: "tbl_users",
-                type: "text",
+                type: "int",
                 nullable: false,
-                defaultValue: "user");
+                defaultValue: 1);
             migrationBuilder.AddColumn<DateTime>(
                 name: "email_verified_at",
                 table: "tbl_users",
@@ -26,6 +30,10 @@ namespace api.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "username",
+                table: "tbl_users",
+                newName: "name");
             migrationBuilder.DropColumn(
                 name: "role",
                 table: "tbl_users");
