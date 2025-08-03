@@ -11,6 +11,21 @@ public class UserService(
 ) : IUserService
 {
     private readonly IUserRepository _userRepository = userRepository;
+    private readonly PasswordHasher _passwordHasher = new();
+
+    public async Task<UserResponseDto?> Login(LoginUserDto loginUser, CancellationToken token)
+    {
+        var existedUser = await _userRepository.FindOneByEmail(loginUser.Email, token);
+        if (existedUser == null)
+        {
+            return null;
+        }
+        if (!_passwordHasher.VerifyPassword(loginUser.Password, existedUser.PasswordHash))
+        {
+            return null;
+        }
+        return existedUser.ToUserDto();
+    }
 
     public async Task<UserResponseDto?> Register(RegisterUserDto registerUser, CancellationToken token)
     {

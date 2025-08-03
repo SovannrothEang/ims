@@ -14,11 +14,12 @@ public class UserRepository(AppDbContext context) : IUserRepository
         var user = userDto.ToUser();
         await _context.Users.AddAsync(user, cancellationToken: token);
         await _context.SaveChangesAsync(token);
-        var createdUser = await _context.Users.FirstOrDefaultAsync(
-            (u) => u.Id == user.Id,
-            cancellationToken: token
-        );
-        return createdUser;
+        return user;
+        // var createdUser = await _context.Users.FirstOrDefaultAsync(
+        //     (u) => u.Id == user.Id,
+        //     cancellationToken: token
+        // );
+        // return createdUser;
     }
 
     public async Task<User?> FindOneByEmail(string Email, CancellationToken token)

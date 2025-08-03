@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Text;
+using api.Application.DTOs.Auth;
 using api.Application.Interfaces;
 using api.Domain.Entities;
 using Microsoft.IdentityModel.JsonWebTokens;
@@ -9,7 +10,7 @@ namespace api.Application.Services;
 
 internal sealed class JwtTokenProvider(IConfiguration configuration) : IJwtTokenProvider
 {
-    public string Create(User user)
+    public string Create(Payload user)
     {
         // Get secret keys
         string secretKey = configuration["Jwt:Secret"]!;
@@ -23,10 +24,10 @@ internal sealed class JwtTokenProvider(IConfiguration configuration) : IJwtToken
             new Claim(JwtRegisteredClaimNames.Email, user.Email),
             new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.ToString())
         ]);
-        if (user.EmailVerfiedAt != null)
+        if (user.EmailVerifiedAt != null)
         {
             claims.AddClaim(
-                new Claim(JwtRegisteredClaimNames.EmailVerified, user.EmailVerfiedAt.ToString()!)
+                new Claim(JwtRegisteredClaimNames.EmailVerified, user.EmailVerifiedAt.ToString()!)
             );
         }
         // Making credential

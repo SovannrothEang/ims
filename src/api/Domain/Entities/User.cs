@@ -14,9 +14,9 @@ public class User : BaseEntity
     [Column("email")]
     public required string Email { get; set; }
     [Column("email_verified_at")]
-    public DateTime? EmailVerfiedAt { get; set; }
+    public DateTime? EmailVerifiedAt { get; set; }
     [Column("password_hash")]
-    public required string PasswordHash
+    public string PasswordHash
     {
         get => _passwordHash;
         set
@@ -29,5 +29,5 @@ public class User : BaseEntity
         }
     }
     [Column("role")]
-    public UserRole Role { get; private set; } = UserRole.User;
+    public UserRole Role { get; set; } = UserRole.User;
 }

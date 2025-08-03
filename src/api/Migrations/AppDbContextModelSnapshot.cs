@@ -138,7 +138,7 @@ namespace api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("email");
 
-                    b.Property<DateTime?>("EmailVerfiedAt")
+                    b.Property<DateTime?>("EmailVerifiedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("email_verified_at");
 

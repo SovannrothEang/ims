@@ -9,6 +9,7 @@ public static class UserDtoMapper
     {
         return new UserResponseDto
         {
+            Id = user.Id,
             Username = user.Username,
             Email = user.Email,
             CreatedAt = user.CreatedAt,
