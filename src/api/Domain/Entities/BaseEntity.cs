@@ -5,9 +5,9 @@ namespace api.Domain.Entities;
 public abstract class BaseEntity
 {
     [Column("id")]
-    public Guid Id { get; private init; } = Guid.NewGuid();
+    public Guid Id { get; init; } = Guid.NewGuid();
     [Column("created_at")]
-    public DateTime CreatedAt { get; private init; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     [Column("updated_at")]
     public DateTime? UpdatedAt { get; set; }
     [Column("is_deleted")]
