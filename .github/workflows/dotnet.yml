@@ -20,5 +20,7 @@ jobs:
           dotnet-version: 9.0.x
       - name: Restore dependencies
         run: dotnet restore api.csproj
+        working-directory: src/api/
       - name: Build
         run: dotnet build --no-restore
+        working-directory: src/api/
