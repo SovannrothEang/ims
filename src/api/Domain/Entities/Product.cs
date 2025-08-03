@@ -34,8 +34,7 @@ public class Product : BaseEntity
     public int Quantity { get; set; }
 
     [Column("category_id")]
-    [Required(ErrorMessage = "Category ID is required.")]
-    public Guid CategoryId { get; set; }
+    public Guid? CategoryId { get; set; }
     public Category Category { get; set; } = null!;
 
     [Column("user_id")]
